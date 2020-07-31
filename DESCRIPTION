@@ -1,0 +1,17 @@
+Package: healthbarometer
+Type: Package
+Title: Interactive illustration of health status in different districts
+Version: 0.0.1
+Author: Peter Nauroth, Bertil Nestorius Baron
+Maintainer: Peter Nauroth <nauroth@healthvision.de>
+Description: This packages provides an interactive Shiny web app that enables even statistically naive users to set weights to the indicators of an aggregated health index.
+License: Trade secret
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Imports: readr, readxl,
+Depends: dplyr, shiny, ggplot2, data.table, dplyr, tidyr, rgdal,
+        shinydashboard, leaflet, htmltools, highcharter, shinyjs, sf,
+        rjson
+NeedsCompilation: no
+Packaged: 2018-08-21 14:47:48 UTC; bbaron

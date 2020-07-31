@@ -1,0 +1,39 @@
+/*Define the style of heading*/
+#title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px 15px -10px 15px;
+}
+
+/* Define the style of the value and rank*/
+#rank, #value{
+  color: rgba(139,0,0,1);
+  font-size: 15px;
+  font-weight: bold;
+}
+.leaflet-bottom.leaflet-right {
+    display: none;
+}
+
+span.description {
+    position: absolute;
+    top: 100px;
+    left: 15px;
+    width: 400px;
+    font-size: smaller;
+    color: #666;
+}
+.subheader {
+    font-size: 14px;
+    font-weight: bold;
+    color: #48C;
+}
+h3{
+  padding-left:10px;
+}
+@media (min-width:1850px)
+ {
+  .container{
+   width:1800px 
+ }
+ }

@@ -1,0 +1,26 @@
+README - Shiny How To Deploy Apps:
+
+# check whether all packages are installed for app! (otherwise error "Disconnected from server might" occur)
+# For next deploy following packages have to be installed:
+packs <- c("plotly")
+install.packages(packs)
+
+
+# Use shiny user
+
+# Upload package to /home/shiny/packages/
+# Build an install pakckage:
+
+R CMD build bmw3years
+R CMD INSTALL bmw3years_0.1.2.tar.gz
+
+# (If first time installed:)
+# Create app folder in opt/shiny-server/apps/bmw3years
+# Create symlink "bmw3years" in srv/shiny-server to opt/shiny-server/apps/bmw3years
+
+ln -s /opt/shiny-server/apps/bmw3years bmw3years
+
+#Upload "app.R" to opt/shiny-server/apps/bmw3years
+
+#Restart shiny server (as admin user)
+sudo systemctl restart shiny-server
