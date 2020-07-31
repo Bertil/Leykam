@@ -129,7 +129,6 @@ shinyServer(function(input, output,session) {
   #   background
   # })
   observeEvent(input$theMap_shape_click,{
-    browser()
     updateSelectInput(
       session = session,
       inputId = "name_des_kreises",

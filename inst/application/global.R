@@ -12,20 +12,21 @@ library(highcharter)
 library(shinyjs)
 library(sf)
 library(rjson)
+library(purrr)
 
 indicator_description = list(
-  "Lebenserwartung Frauen" =  "Lebenserwartung Frauen (Geburt / ab 65 Jahre)",
-  "Lebenserwartung Männer" = "Lebenserwartung Männer (Geburt / ab 65 Jahre)",
-  "Gesundheit im ersten Lebensjahr" = "Mittelwert der Einzelidikatoren aus Geburtsgewicht < 2500 g und Säuglingssterblichkeit",
-  "Kindergesundheit" = "Mittelwert der Einzelindikatoren aus Krankenhausaufenthalten von Kindern und Anteil der übergewichtigen Kinder bei der Einschulungsuntersuchung",
-  "Impfquoten Masern Polio" = "Einzelindikator: durschnittliche Impfquoten für polio und Masern",
-  "Vorsorgeuntersuchungen bei Kindern" = "Einzelindikator: Mittelwert der Teilnahme an der U3-6, U7, U7a und U8 Vorsorge-Untersuchung bei Kindern",
-  "Psychomotorische Reife bei der Einschulung" = "Einzelindikator: Anteil der auffälligen Kinder bei der Schuleingangs-Untersuchung beim Sehen, Hören, Verhalten, Koordination oder der Sprachentwicklung",
-  "Verletzte im Straßenverkehr" = "Verletzte Personen im Strassenverkehr pro 1.000 Einwohner",
-  "Alkoholbedingte Erkrankungen" = "Mittelwert der Einzelindikatoren: Sterbefälle aufgrund vermeidbarer Lebererkrankungen, alkoholbedingte Unfälle",
-  "Hausarztdichte" = "Mittelwert der Einzelindikatoren: Hausarztdichte (Einwohner pro Hausarzt) und Anteil der Postleitzahlen im Kreis mit einer sehr niedrigen Hausarztdichte",
-  "Apothekendichte" = "Einzelindikator: Apotheken pro 1.000 Einwohner",
-  "Personal in Pflege" = "Anzahl Personal in ambulanter und stationärer Pflege bei Pflegebedürftigen über 65 Jahren"
+  "of_1" = "Wertschätzung, Führung, Betriebsklima",
+  "of_2" = "Gesundheit und Arbeitsfähigkeit",
+  "of_3" = "Autonomie, Rollenklarheit, Identifikaton",
+  "of_4" = "Zukünftige Arbeitsfähigkeit",
+  "of_5" = "Anpassungsfähigkeit Organisation",
+  "of_6" = "Private Überlastung",
+  "of_7" = "Arbeitsbelastung",
+  "of_8" = "Äußere Arbeitsbedingungen",
+  "of_9" = "Passung Qualifikation",
+  "of_10" = "Überstunden",
+  "of_11" = "Arbeitsmittel",
+  "of_12" = "Arbeitsplatzsicherheit"
 )
 indikatoren_struktur <- list(
   "Gesundheitliche Lage der Bevölkerung" = list(
@@ -132,5 +133,5 @@ starChartColors = tibble(
     "rgba(213, 155, 46, 0.92253)",
     "rgba(155, 213, 46, 0.92253)"
   ),
-  key = factor(unlist(lapply(indikatoren_struktur, names)))
+  key = names(indicator_description)
 )

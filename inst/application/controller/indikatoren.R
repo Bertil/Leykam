@@ -33,12 +33,12 @@
 # 
 # })
 # 
-lapply(names(indikatoren_struktur),
-       function(indicator_group) {
+lapply(names(indicator_description),
+       function(indicator) {
          callModule(indikatoren,
-                    id = indicator_group %>% toId(),
-                    title = indicator_group,
-                    chart_parameters = generateparameters,
+                    id = indicator,
+                    title = indicator_description[[indicator]],
+                    chart_data = länder_agg_map_dta,
                     selectedArea = reactive({input$name_des_kreises}))
 
        })

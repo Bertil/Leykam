@@ -31,6 +31,18 @@ span.description {
 h3{
   padding-left:10px;
 }
+.chart-container:first-of-type {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.chart-container:nth-of-type(4) {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+
+
 @media (min-width:1850px)
  {
   .container{

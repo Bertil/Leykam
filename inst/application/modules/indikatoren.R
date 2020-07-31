@@ -1,15 +1,14 @@
-hcBubble1D <- function(parameters,selected_area){
+hcBubble1D <- function(parameters, selected_area){
   dta <- parameters$dta %>%
-    filter(!kreis %in% c(selected_area,"Deutschland","Europa") ) %>%
-    rename_if("is.numeric",
-              funs(paste0("x"))) %>%
-    mutate(y = 0)
+    dplyr::select(all_of(parameters$indicator_id), name) %>%
+    mutate(y = 0) %>% 
+    rename_at(parameters$indicator_id, ~paste("x"))
 
   highchart() %>%
     hc_add_series(data = dta,
                   type = "bubble",
                   marker = list(
-                    fillColor = starChartColors$color[starChartColors$key == parameters$title],
+                    fillColor = starChartColors$color[starChartColors$key == parameters$indicator_id],
                     fillOpacity = 0.2,
                     lineWidth = 0
                   ),
@@ -19,13 +18,13 @@ hcBubble1D <- function(parameters,selected_area){
     hc_add_series(
       data = tibble(
         x = parameters$dta %>%
-          filter(kreis %in% c(selected_area) ) %>%
-          rename_if("is.numeric",
+          filter(name %in% selected_area ) %>%
+          rename_at(parameters$indicator_id,
                     funs(paste0("value"))) %>%
           pull(value),
-        kreis = parameters$dta %>%
-          filter(kreis %in% c(selected_area) ) %>%
-          pull(kreis),
+        name = parameters$dta %>%
+          filter(name %in% c(selected_area) ) %>%
+          pull(name),
         y = 0
       ),
       type = "bubble",
@@ -69,7 +68,7 @@ hcBubble1D <- function(parameters,selected_area){
     hc_tooltip(
       useHTML = TRUE,
       headerFormat = '<table>',
-      pointFormat = '<tr><th colspan="2"><h5>{point.kreis}</h5></th></tr>
+      pointFormat = '<tr><th colspan="2"><h5>{point.name}</h5></th></tr>
         <tr><th></th><td>{point.x:.1f}</td></tr>',
       footerFormat = '</table>',
       followPointer = TRUE
@@ -82,44 +81,24 @@ hcBubble1D <- function(parameters,selected_area){
 
 
 
-indikatorenUI <- function(id,title){
+indikatorenUI <- function(id){
   ns <- NS(id)
   div(
+    class = "chart-container",
     style = "background-color:#FFF;",
-    h3(title),
-    uiOutput(ns("charts"))
+    # h3(title),
+    highchartOutput(ns("chart"),
+                    height = "140px")
   )
 }
 
-indikatoren <- function(input,output,session,chart_parameters,title,selectedArea){
+indikatoren <- function(input,output,session,chart_data,title,selectedArea){
   ns <- session$ns
-  output$charts <- renderUI({
-    tagList(
-      lapply(1:length(indikatoren_struktur[[title]]), function(idx){
-        span(
-          style = "position:relative;",
-          highchartOutput(
-            outputId = ns(paste0("chart",idx)),
-            height = "140px"
-          ),
-          span(
-            class = "description",
-            textOutput(ns(paste0("beschreibung",idx)))
-          )
-
-        )
-      })
-    )
+  output$chart <- renderHighchart({
+    hcBubble1D(list(dta = chart_data, indicator_id = ns(NULL), title = indicator_description[[ns(NULL)]]),
+               selected_area = selectedArea() )
   })
-  lapply(1:length(indikatoren_struktur[[title]]), function(idx){
-    output[[paste0("chart",idx)]] <- renderHighchart({
-      hcBubble1D(chart_parameters()[[which(names(indikatoren_struktur) == title)]]$indicators[[idx]],
-                 selected_area = selectedArea() )
-    })
-    output[[paste0("beschreibung",idx)]] <- renderText({
-      chart_parameters()[[which(names(indikatoren_struktur) == title)]]$indicators[[idx]]$dscrptn
-    })
-  })
+  
 
 
 }
