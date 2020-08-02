@@ -13,7 +13,7 @@ dta <- rjson::fromJSON('[
 
 
 observe({
-  var_json <- länder_agg_dta %>%
+  var_json <- laender_agg_dta %>%
     filter(name == input$name_des_kreises) %>%
     dplyr::select(starts_with("of_")) %>%
     gather() %>%

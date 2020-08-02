@@ -86,18 +86,13 @@ indikatoren_struktur <- list(
     )
   )
 )
-# länder <- readOGR("./GeoJSON/2017/simplified-95/laender_95_geo.json",
-#                    use_iconv = TRUE,
-#                    encoding = "UTF-8") %>%
-#   st_as_sf() 
-# bezirke <- readOGR("./GeoJSON/BEZIRKSGRENZEOGD.json",
-#                   use_iconv = TRUE,
-#                   encoding = "UTF-8") %>% 
-#   st_as_sf() %>% 
-#   select(NAMEK, BEZNR, geometry)
+
 
 bezirke_map_agg_dta <- readRDS("./data/bezirke_map_agg_dta.rds")
-länder_agg_map_dta <- readRDS("./data/länder_agg_map_dta.rds")
+laender_agg_map_dta <- readRDS("./data/länder_agg_map_dta.rds")
+bezirk_agg_dta <- readRDS("./data/bezirk_agg_dta.rds")
+laender_agg_dta <- readRDS("./data/laender_agg_dta.rds")
+
 
 
 toId <- function(txt){

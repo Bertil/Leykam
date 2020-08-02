@@ -1,4 +1,4 @@
-library(healthbarometer)
-dir <- system.file("application", package = "healthbarometer")
+library(leykam)
+dir <- system.file("application", package = "leykam")
 setwd(dir)
 shiny::shinyAppDir(".")

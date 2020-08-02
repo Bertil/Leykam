@@ -5,10 +5,6 @@ main_column <-
          column(
            width = 8,
            div(
-             id = "rank",
-             "Ranking in Baden-Württemberg"
-           ),
-           div(
              class = "subheader",
              "Indexvergleich der Stadt- und Landkreise"
            )
@@ -62,8 +58,29 @@ main_column <-
            selectInput(
              inputId = "name_des_kreises",
              label = "Bundesland",
-             choices = länder_agg_map_dta$name,
+             choices = laender_agg_map_dta$name,
              selected = "Wien"
+           )
+         ),
+         column(
+           width = 3,
+           selectInput(
+             inputId = "main_indicator",
+             label = "Indikator",
+             choices = setNames(names(indicator_description[paste0("of_",1:12)]),
+                                indicator_description[paste0("of_",1:12)]),
+             selected = "of_1",
+             width = "100%"
+           )
+         ),
+         column(
+           width = 3,
+           selectInput(
+             inputId = "ratio_indicator",
+             label = "Überräprensentiert",
+             choices = setNames(c("ratio_default",paste0("below_25_of_",1:12, "_ratio")),
+                                c("kein", indicator_description[paste0("of_",1:12)])),
+             width = "100%"
            )
          )
        ),

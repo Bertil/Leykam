@@ -6,7 +6,7 @@
 }
 
 /* Define the style of the value and rank*/
-#rank, #value{
+.subheader, #value{
   color: rgba(139,0,0,1);
   font-size: 15px;
   font-weight: bold;
@@ -22,11 +22,6 @@ span.description {
     width: 400px;
     font-size: smaller;
     color: #666;
-}
-.subheader {
-    font-size: 14px;
-    font-weight: bold;
-    color: #48C;
 }
 h3{
   padding-left:10px;

@@ -2,9 +2,10 @@
 #### controller for the Map                        ####
 #######################################################
 
-dynamicOpasity <- function(x){ifelse(x == 0,0.4 , 1)}
+dynamicOpasity <- function(x){ifelse(x == 0,0.1 , .9)}
 # generate the map output
 output$theMap <- renderLeaflet({
+  # browser()
   leaflet(
     width = 800,
     options = leafletOptions(
@@ -14,15 +15,17 @@ output$theMap <- renderLeaflet({
     # setView(lng=9.989436, lat=53.54848, zoom=11) %>%
     # addTiles(urlTemplate="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", group = "Helle Karte") %>%
     # addTiles(urlTemplate="https://{s}.tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey=86897a259984436081f859aab1032e7d", group = "Dunkle Karte") %>%
-    addPolygons(data = länder_agg_map_dta,
-                # color =~colorBin(palette = c("#000000","#FF0000"),bins = 2,domain = c(FALSE,TRUE))(selected),
+    addPolygons(data = laender_agg_map_dta %>% 
+                  mutate(index = !!sym(input$main_indicator),
+                         index_ratio = !!sym(input$ratio_indicator)),
+                color =~colorBin(palette = c("#000000","#FF0000"),bins = 2,domain = c(FALSE,TRUE))(as.numeric(laender_agg_map_dta$name == input$name_des_kreises)),
                 fill = TRUE,
-                # weight = ~(1 + selected),
+                weight = ~(1 + as.numeric(laender_agg_map_dta$name == input$name_des_kreises)),
                 layerId = ~name,
                 label = ~name,
-                # opacity = ~dynamicOpasity(selected),
-                # fillOpacity = ~dynamicOpasity(selected),
-                # fillColor = ~colorNumeric("BuGn", index*10)(index*10),
+                opacity = ~dynamicOpasity(laender_agg_map_dta$name == input$name_des_kreises),
+                fillOpacity = ~dynamicOpasity(index_ratio > .25),
+                fillColor = ~colorNumeric(rev(c('#87BE55CC', '#CDE687CC', '#F1ECBDCC', '#FBDB4CCC', '#C85502CC')), index)(index),
                 highlightOptions = highlightOptions(bringToFront = TRUE,
                                                     fillOpacity = 0.8)) %>%
     setMaxBounds(lng1 = 9.3,lng2 =  17.7,lat1 =  45.8, lat2 = 49.5)

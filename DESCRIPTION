@@ -1,10 +1,10 @@
-Package: healthbarometer
+Package: leykam
 Type: Package
 Title: Interactive illustration of health status in different districts
 Version: 0.0.1
 Author: Peter Nauroth, Bertil Nestorius Baron
 Maintainer: Peter Nauroth <nauroth@healthvision.de>
-Description: This packages provides an interactive Shiny web app that enables even statistically naive users to set weights to the indicators of an aggregated health index.
+Description: This packages provides an interactive Shiny web app that enables even statistically naive users to compare the situation in Austria.
 License: Trade secret
 Encoding: UTF-8
 LazyData: true
