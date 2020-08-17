@@ -15,18 +15,18 @@ library(rjson)
 library(purrr)
 
 indicator_description = list(
-  "of_1" = "Wertschätzung, Führung, Betriebsklima",
-  "of_2" = "Gesundheit und Arbeitsfähigkeit",
-  "of_3" = "Autonomie, Rollenklarheit, Identifikaton",
-  "of_4" = "Zukünftige Arbeitsfähigkeit",
-  "of_5" = "Anpassungsfähigkeit Organisation",
-  "of_6" = "Private Überlastung",
-  "of_7" = "Arbeitsbelastung",
-  "of_8" = "Äußere Arbeitsbedingungen",
-  "of_9" = "Passung Qualifikation",
-  "of_10" = "Überstunden",
-  "of_11" = "Arbeitsmittel",
-  "of_12" = "Arbeitsplatzsicherheit"
+  "of_1_me_sc" = "Wertschätzung, Führung, Betriebsklima",
+  "of_2_me_sc" = "Gesundheit und Arbeitsfähigkeit",
+  "of_3_me_sc" = "Autonomie, Rollenklarheit, Identifikaton",
+  "of_4_me_sc" = "Zukünftige Arbeitsfähigkeit",
+  "of_5_me_sc" = "Anpassungsfähigkeit Organisation",
+  "of_6_me_sc" = "Private Überlastung",
+  "of_7_me_sc" = "Arbeitsbelastung",
+  "of_8_me_sc" = "Äußere Arbeitsbedingungen",
+  "of_9_me_sc" = "Passung Qualifikation",
+  "of_10_me_sc" = "Überstunden",
+  "of_11_me_sc" = "Arbeitsmittel",
+  "of_12_me_sc" = "Arbeitsplatzsicherheit"
 )
 indikatoren_struktur <- list(
   "Gesundheitliche Lage der Bevölkerung" = list(
@@ -89,7 +89,7 @@ indikatoren_struktur <- list(
 
 
 bezirke_map_agg_dta <- readRDS("./data/bezirke_map_agg_dta.rds")
-laender_agg_map_dta <- readRDS("./data/länder_agg_map_dta.rds")
+laender_agg_map_dta <- readRDS("./data/laender_agg_map_dta.rds")
 bezirk_agg_dta <- readRDS("./data/bezirk_agg_dta.rds")
 laender_agg_dta <- readRDS("./data/laender_agg_dta.rds")
 

@@ -38,7 +38,7 @@ lapply(names(indicator_description),
          callModule(indikatoren,
                     id = indicator,
                     title = indicator_description[[indicator]],
-                    chart_data = laender_agg_map_dta,
+                    chart_data = laender_agg_dta,
                     selectedArea = reactive({input$name_des_kreises}))
 
        })

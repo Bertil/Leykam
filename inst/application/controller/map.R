@@ -25,7 +25,7 @@ output$theMap <- renderLeaflet({
                 label = ~name,
                 opacity = ~dynamicOpasity(laender_agg_map_dta$name == input$name_des_kreises),
                 fillOpacity = ~dynamicOpasity(index_ratio > .25),
-                fillColor = ~colorNumeric(rev(c('#87BE55CC', '#CDE687CC', '#F1ECBDCC', '#FBDB4CCC', '#C85502CC')), index)(index),
+                fillColor = ~colorBin(palette = rev(c('#87BE55CC', '#CDE687CC', '#F1ECBDCC', '#FBDB4CCC', '#C85502CC')),bins = 5, domain = 1:5)(index),
                 highlightOptions = highlightOptions(bringToFront = TRUE,
                                                     fillOpacity = 0.8)) %>%
     setMaxBounds(lng1 = 9.3,lng2 =  17.7,lat1 =  45.8, lat2 = 49.5)

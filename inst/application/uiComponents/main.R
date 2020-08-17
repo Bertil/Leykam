@@ -67,8 +67,8 @@ main_column <-
            selectInput(
              inputId = "main_indicator",
              label = "Indikator",
-             choices = setNames(names(indicator_description[paste0("of_",1:12)]),
-                                indicator_description[paste0("of_",1:12)]),
+             choices = setNames(paste0("of_",1:12,"_me_sc_cat"),
+                                indicator_description[paste0("of_",1:12,"_me_sc")]),
              selected = "of_1",
              width = "100%"
            )
@@ -79,7 +79,7 @@ main_column <-
              inputId = "ratio_indicator",
              label = "Überräprensentiert",
              choices = setNames(c("ratio_default",paste0("below_25_of_",1:12, "_ratio")),
-                                c("kein", indicator_description[paste0("of_",1:12)])),
+                                c("kein", indicator_description[paste0("of_",1:12,"_me_sc")])),
              width = "100%"
            )
          )

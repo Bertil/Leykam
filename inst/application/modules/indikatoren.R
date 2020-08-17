@@ -50,8 +50,8 @@ hcBubble1D <- function(parameters, selected_area){
     hc_xAxis(
       title = list(text = NULL),
       allowDecimals = FALSE,
-      floor = -0.5,
-      ceiling = 10.5,
+      min = -0.5,
+      max = 10.5,
       lineWidth = 0,
       tickWidth = 0,
       labels = list(
