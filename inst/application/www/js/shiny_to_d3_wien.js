@@ -1,33 +1,10 @@
-var w = 520;
-var h = 520;
-
-var starChartColors = [
-  "rgba(85, 152, 195,0.87524)",
-  "rgba(40, 150, 131,0.38889)",
-  "rgba(98, 183, 225,0.55981)",
-  "rgba(48, 164, 86, 0.72562)",
-  "rgba(219, 76, 96, 0.79116)",
-  "rgba(229, 99, 47, 0.85185)",
-  "rgba(130, 172, 70, 0.86281)",
-  "rgba(124, 59, 115, 0.87771)",
-  "rgba(96, 96, 96, 0.87931)",
-  "rgba(153, 143, 228, 0.91304)",
-  "rgba(213, 155, 46, 0.92253)",
-  "rgba(155, 213, 46, 0.92253)"
-]
-
-starColor = function(d){
-  return starChartColors[d.key];
-}
-var chartCenter = h/2;
-
 
 Shiny.addCustomMessageHandler(
-  "jsondata",
+  "wien-jsondata",
   function(message){
 
 var dataset = JSON.parse(message);
-//d3.select("#starChart").selectAll("*").remove();
+//d3.select("#wien-starChart").selectAll("*").remove();
 
   var xScale = d3.scale.ordinal()
   				.domain(d3.range(dataset.length))
@@ -40,9 +17,9 @@ var dataset = JSON.parse(message);
   var key = function(d) {
   	return d.key;
   };
-if(d3.select('#starChart').select('svg')[0][0] === null){
+if(d3.select('#wien-starChart').select('svg')[0][0] === null){
 
-  var svg = d3.select("#starChart")
+  var svg = d3.select("#wien-starChart")
   			.append("svg")
   			.attr("width", w)
   			.attr("height", h);
@@ -80,19 +57,19 @@ if(d3.select('#starChart').select('svg')[0][0] === null){
   		var yPosition = chartCenter + xScale.rangeBand()/4 + Math.cos(i*2*Math.PI/12) * yScale(5)-60;
 
   		//Update Tooltip Position & value
-  		d3.select("#tooltip")
+  		d3.select("#wien-tooltip")
   			.style("left", xPosition + "px")
   			.style("top", yPosition + "px")
-  			.select("#indicator_value")
+  			.select("#wien-indicator_value")
   			.text('Index: ' + d.value);
-  		d3.select("#tooltip")
-  			.select("#indicator_name")
+  		d3.select("#wien-tooltip")
+  			.select("#wien-indicator_name")
   			.text(d.label)
   			.style('color', d.color);
-  		d3.select("#tooltip").classed("hidden", false);
+  		d3.select("#wien-tooltip").classed("hidden", false);
   	})
   	.on("mouseout", function() {
-  		d3.select("#tooltip").classed("hidden", true);
+  		d3.select("#wien-tooltip").classed("hidden", true);
   	})	;
 
   svg.selectAll("text")
@@ -122,22 +99,22 @@ if(d3.select('#starChart').select('svg')[0][0] === null){
   		var yPosition = chartCenter + xScale.rangeBand()/4 + Math.cos((6+i)*2*Math.PI/12) * yScale(7)-40;
 
   		//Update Tooltip Position & value
-  		d3.select("#tooltip")
+  		d3.select("#wien-tooltip")
   			.style("left", xPosition + "px")
   			.style("top", yPosition + "px")
-  			.select("#indicator_value")
+  			.select("#wien-indicator_value")
   			.text('Index: ' + d.value);
-  		d3.select("#tooltip")
-  			.select("#indicator_name")
+  		d3.select("#wien-tooltip")
+  			.select("#wien-indicator_name")
   			.text(d.label)
   			.style('color', d.color);
-  		d3.select("#tooltip").classed("hidden", false);
+  		d3.select("#wien-tooltip").classed("hidden", false);
   	})
   	.on("mouseout", function() {
-  		d3.select("#tooltip").classed("hidden", true);
+  		d3.select("#wien-tooltip").classed("hidden", true);
   	})	;
 } else {
-  var svg = d3.select('#starChart')
+  var svg = d3.select('#wien-starChart')
     .select('svg');
 
   svg.selectAll('rect')
@@ -148,19 +125,19 @@ if(d3.select('#starChart').select('svg')[0][0] === null){
   		var yPosition = chartCenter + xScale.rangeBand()/4 + Math.cos((6+i)*2*Math.PI/12) * yScale(5)-60;
 
   		//Update Tooltip Position & value
-  		d3.select("#tooltip")
+  		d3.select("#wien-tooltip")
   			.style("left", xPosition + "px")
   			.style("top", yPosition + "px")
-  			.select("#indicator_value")
+  			.select("#wien-indicator_value")
   			.text('Index: ' + d.value);
-  		d3.select("#tooltip")
-  			.select("#indicator_name")
+  		d3.select("#wien-tooltip")
+  			.select("#wien-indicator_name")
   			.text(d.label)
   			.style('color', d.color);
-  		d3.select("#tooltip").classed("hidden", false);
+  		d3.select("#wien-tooltip").classed("hidden", false);
   	})
   	.on("mouseout", function() {
-  		d3.select("#tooltip").classed("hidden", true);
+  		d3.select("#wien-tooltip").classed("hidden", true);
   	})
   	.transition()
     .delay(function (d, i) { return i*200; })
@@ -175,19 +152,19 @@ if(d3.select('#starChart').select('svg')[0][0] === null){
   		var yPosition = chartCenter + xScale.rangeBand()/4 + Math.cos((6+i)*2*Math.PI/12) * yScale(5)-60;
 
   		//Update Tooltip Position & value
-  		d3.select("#tooltip")
+  		d3.select("#wien-tooltip")
   			.style("left", xPosition + "px")
   			.style("top", yPosition + "px")
-  			.select("#indicator_value")
+  			.select("#wien-indicator_value")
   			.text('Index: ' + d.value);
-  		d3.select("#tooltip")
-  			.select("#indicator_name")
+  		d3.select("#wien-tooltip")
+  			.select("#wien-indicator_name")
   			.text(d.label)
   			.style('color', d.color);
-  		d3.select("#tooltip").classed("hidden", false);
+  		d3.select("#wien-tooltip").classed("hidden", false);
   	})
   	.on("mouseout", function() {
-  		d3.select("#tooltip").classed("hidden", true);
+  		d3.select("#wien-tooltip").classed("hidden", true);
   	});
 
   svg.selectAll('text')

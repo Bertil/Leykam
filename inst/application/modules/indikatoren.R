@@ -94,8 +94,9 @@ indikatorenUI <- function(id){
 
 indikatoren <- function(input,output,session,chart_data,title,selectedArea){
   ns <- session$ns
+  variable <- gsub(".*-([^-]*)", "\\1", ns(NULL))
   output$chart <- renderHighchart({
-    hcBubble1D(list(dta = chart_data, indicator_id = ns(NULL), title = indicator_description[[ns(NULL)]]),
+    hcBubble1D(list(dta = chart_data, indicator_id = variable, title = indicator_description[[variable]]),
                selected_area = selectedArea() )
   })
   

@@ -8,7 +8,8 @@ full_page <- fixedPage(
         rel = "stylesheet", href = "css/ui.css"
       ),
       tags$script(src="https://d3js.org/d3.v3.min.js"),
-      tags$script(src="js/shiny_to_d3.js")
+      tags$script(src="js/shiny_to_d3_austria.js"),
+      tags$script(src="js/shiny_to_d3_wien.js")
     ),
 
     # uiOutput("background_ui"),

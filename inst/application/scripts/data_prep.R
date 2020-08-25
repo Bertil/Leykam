@@ -31,6 +31,11 @@ laender_agg_dta <- leykam_survey06 %>%
          .keep = "unused")
 
 
+bezirke <- readOGR("./GeoJSON/BEZIRKSGRENZEOGD.json",
+                   use_iconv = TRUE,
+                   encoding = "UTF-8") %>%
+  st_as_sf() %>%
+  select(name = NAMEK, id = BEZNR, geometry)
 bezirk_agg_dta <- leykam_survey06 %>% 
   filter(!is.na(citydistrict)) %>% 
   mutate(
@@ -38,22 +43,19 @@ bezirk_agg_dta <- leykam_survey06 %>%
   ) %>%
   group_by(citydistrict) %>% 
   summarise(
-    across(all_of(vars_of_interest), mean, na.rm = TRUE),
+    across(ends_with("_sc_ci"), mean, na.rm = TRUE),
+    across(ends_with("_ci_cat"), mean, na.rm = TRUE),
     across(starts_with("below"), mean, na.rm = TRUE, .names = "{col}_ratio")
   ) %>% 
-  mutate(across(all_of(vars_of_interest), scale_to_10)) %>% 
-  rename(id = citydistrict)
+  rename(id = citydistrict) %>% 
+  rename_all(~gsub("_ci","",.)) %>% 
+  inner_join(sf::st_set_geometry(bezirke, NULL) )
 laender <- readOGR("./GeoJSON/2017/simplified-95/laender_95_geo.json",
                    use_iconv = TRUE,
                    encoding = "UTF-8") %>%
   st_as_sf() %>% 
   rename(id = iso) %>% 
   mutate(id = as.numeric(id))
-bezirke <- readOGR("./GeoJSON/BEZIRKSGRENZEOGD.json",
-                   use_iconv = TRUE,
-                   encoding = "UTF-8") %>%
-  st_as_sf() %>%
-  select(name = NAMEK, id = BEZNR, geometry)
 
 laender_agg_map_dta <- inner_join(laender, laender_agg_dta) %>% 
   mutate(ratio_default = 1)

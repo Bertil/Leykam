@@ -105,6 +105,7 @@ toId <- function(txt){
 
 }
 
+dynamicOpasity <- function(x){ifelse(x == 0,0.1 , .9)}
 
 lapply(
   list.files(path = "modules/",full.names = TRUE),

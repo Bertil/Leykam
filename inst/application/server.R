@@ -14,12 +14,21 @@ shinyServer(function(input, output,session) {
   #     source(file = file,local = TRUE, encoding = "UTF-8")
   #   }
   # )
- for(file in list.files(path = "controller",full.names = TRUE)){
-   source(file = file,local = TRUE, encoding = "UTF-8")
- }
+ # for(file in list.files(path = "controller",full.names = TRUE)){
+ #   source(file = file,local = TRUE, encoding = "UTF-8")
+ # }
  # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  # ---- Reactive Functions  ----
-
+  callModule(tab_module,
+             id = "austria",
+             agg_dta = laender_agg_dta,
+             map_dta = laender_agg_map_dta,
+             zoom = 7)
+  callModule(tab_module,
+             id = "wien",
+             agg_dta = bezirk_agg_dta,
+             map_dta = bezirke_agg_map_dta,
+             zoom = 11)
 
   # ---- Get the baromter values according to user input  ----
   # return a list with
@@ -128,13 +137,6 @@ shinyServer(function(input, output,session) {
   # 
   #   background
   # })
-  observeEvent(input$theMap_shape_click,{
-    updateSelectInput(
-      session = session,
-      inputId = "name_des_kreises",
-      selected = input$theMap_shape_click$id
-    )
-  })
 })
 
 

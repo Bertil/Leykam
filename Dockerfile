@@ -13,10 +13,10 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     libssh2-1-dev \
     libxml2-dev
-# copy the app to the image
 RUN apt-get update && apt-get install -y libudunits2-dev \
    libgdal-dev
 RUN R -e "install.packages(c('DT','shinythemes', 'rgdal','leaflet','shinydashboard','shinyjs', 'sf', 'rjson'))"
+# copy the app to the image
 RUN mkdir /root/leykam
 
 COPY ./ /root/leykam

@@ -1,17 +1,3 @@
-dta <- rjson::fromJSON('[
-{ "key": 0, "value": 5 },
-{ "key": 1, "value": 10 },
-{ "key": 2, "value": 6 },
-{ "key": 3, "value": 9 },
-{ "key": 4, "value": 7 },
-{ "key": 5, "value": 5 },
-{ "key": 6, "value": 7 },
-{ "key": 7, "value": 8 },
-{ "key": 8, "value": 5 },
-{ "key": 9, "value": 8 },
-{ "key": 10, "value": 6 }]')
-
-
 observe({
   var_json <- laender_agg_dta %>%
     filter(name == input$name_des_kreises) %>%
