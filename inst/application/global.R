@@ -88,7 +88,7 @@ indikatoren_struktur <- list(
 )
 
 
-bezirke_map_agg_dta <- readRDS("./data/bezirke_map_agg_dta.rds")
+bezirke_agg_map_dta <- readRDS("./data/bezirke_agg_map_dta.rds")
 laender_agg_map_dta <- readRDS("./data/laender_agg_map_dta.rds")
 bezirk_agg_dta <- readRDS("./data/bezirk_agg_dta.rds")
 laender_agg_dta <- readRDS("./data/laender_agg_dta.rds")
